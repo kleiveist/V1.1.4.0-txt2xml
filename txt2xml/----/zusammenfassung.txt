@@ -1,0 +1,574 @@
+################################################################################
+# Datei: archiver.py
+################################################################################
+
+import os
+import subprocess
+import shutil
+
+def archive_by_content(output_folder, archive_user_id, base_name):
+    """
+    Kopiert die vorhandene .by2-Datei aus dem txt2xml-Ordner (also dem Modulordner)
+    in den output_folder (z. B. "jjmmtt" oder "jjmmtt_01"). Anschließend wird mit 7-Zip
+    in dem kopierten Archiv die enthaltene by_content.xml durch die von txt2xml.py
+    erzeugte by_content.xml ersetzt und das Archiv gespeichert.
+
+    Die Parameter archive_user_id und base_name werden nicht mehr zur Benennung des
+    Archivs verwendet – stattdessen bleibt der Originalname der .by2-Datei erhalten.
+
+    Rückgabe:
+      Pfad zur aktualisierten .by2-Datei.
+    """
+    # Ermittle den Ordner, in dem sich dieses Modul (und damit auch die exportierte .by2-Datei)
+    # befindet – dies entspricht dem txt2xml-Ordner.
+    script_folder = os.path.dirname(os.path.abspath(__file__))
+    
+    # Suche im script_folder nach einer .by2-Datei (unabhängig von Groß-/Kleinschreibung)
+    by2_files = [f for f in os.listdir(script_folder) if f.lower().endswith('.by2')]
+    if not by2_files:
+        raise FileNotFoundError("Keine .by2-Datei im txt2xml-Ordner gefunden.")
+    
+    # Verwende die erste gefundene .by2-Datei und behalte deren Originalnamen bei
+    exported_by2_file = by2_files[0]
+    final_archive_filepath = os.path.join(output_folder, exported_by2_file)
+    
+    # Kopiere die vorhandene .by2-Datei in den output_folder
+    shutil.copy(os.path.join(script_folder, exported_by2_file), final_archive_filepath)
+    print(f"Die .by2-Datei '{exported_by2_file}' wurde in den Ordner '{output_folder}' kopiert.")
+
+    # Stelle sicher, dass die von txt2xml.py erzeugte by_content.xml existiert
+    by_content_filename = "by_content.xml"
+    abs_by_content_path = os.path.join(output_folder, by_content_filename)
+    if not os.path.exists(abs_by_content_path):
+        raise FileNotFoundError(f"Die Datei '{by_content_filename}' wurde nicht im Ordner {output_folder} gefunden.")
+
+    # Pfad zu 7z.exe – bitte anpassen, falls notwendig!
+    seven_zip_path = r"C:\Program Files\7-Zip\7z.exe"
+    if not os.path.exists(seven_zip_path):
+        raise FileNotFoundError(f"7-Zip wurde nicht unter '{seven_zip_path}' gefunden.")
+
+    # Aktualisiere im kopierten Archiv den Eintrag by_content.xml
+    result = subprocess.run(
+         [seven_zip_path, "u", final_archive_filepath, by_content_filename],
+         cwd=output_folder,
+         capture_output=True,
+         text=True
+    )
+    print("7z stdout:", result.stdout)
+    print("7z stderr:", result.stderr)
+    
+    if result.returncode != 0:
+         raise Exception(f"Fehler beim Aktualisieren des Archivs:\n{result.stderr}")
+    
+    return final_archive_filepath
+
+
+################################################################################
+# Datei: b2y.py
+################################################################################
+
+import os
+import subprocess
+import shutil
+
+def update_by2_archive(archive_filepath, by_content_filepath):
+    """
+    Aktualisiert das .by2-Archiv, indem der interne Eintrag by_content.xml
+    durch die neu erzeugte by_content.xml ersetzt wird.
+    
+    Falls das Archiv nicht im Zielverzeichnis existiert, wird versucht,
+    es aus dem Modulordner (txt2xml) zu kopieren.
+
+    Parameter:
+      archive_filepath: Zielpfad des Archivs (z.B. im Output-Ordner)
+      by_content_filepath: Pfad zur neu erzeugten by_content.xml im Output-Ordner
+
+    Rückgabe:
+      True, wenn die Aktualisierung erfolgreich war.
+    """
+    # Prüfe, ob die by_content.xml existiert
+    if not os.path.exists(by_content_filepath):
+        raise FileNotFoundError(f"Die Datei '{by_content_filepath}' wurde nicht gefunden.")
+    
+    # Falls das Archiv nicht existiert, kopiere es aus dem Modulordner (txt2xml)
+    if not os.path.exists(archive_filepath):
+        module_folder = os.path.dirname(os.path.abspath(__file__))
+        # Suche nach einer .by2-Datei im Modulordner
+        by2_files = [f for f in os.listdir(module_folder) if f.lower().endswith('.by2')]
+        if not by2_files:
+            raise FileNotFoundError(f"Keine .by2-Datei im Modulordner '{module_folder}' gefunden, um sie zu kopieren.")
+        # Wähle die erste gefundene .by2-Datei und kopiere sie in den Zielordner
+        source_archive = os.path.join(module_folder, by2_files[0])
+        shutil.copy(source_archive, archive_filepath)
+        print(f"Die .by2-Datei '{os.path.basename(source_archive)}' wurde nach '{archive_filepath}' kopiert.")
+
+    # Der Dateiname, wie er im Archiv enthalten ist, wird angenommen: "by_content.xml"
+    by_content_filename = os.path.basename(by_content_filepath)
+    # Das Arbeitsverzeichnis ist das Verzeichnis, in dem sich die by_content.xml befindet.
+    work_dir = os.path.dirname(by_content_filepath)
+
+    # Pfad zu 7z.exe – bitte gegebenenfalls anpassen!
+    seven_zip_path = r"C:\Program Files\7-Zip\7z.exe"
+    if not os.path.exists(seven_zip_path):
+        raise FileNotFoundError(f"7-Zip wurde nicht unter '{seven_zip_path}' gefunden.")
+
+    # Führe den 7-Zip-Befehl aus, um im Archiv den Eintrag by_content.xml zu ersetzen.
+    result = subprocess.run(
+        [seven_zip_path, "u", archive_filepath, by_content_filename],
+        cwd=work_dir,
+        capture_output=True,
+        text=True
+    )
+    print("7z stdout:", result.stdout)
+    print("7z stderr:", result.stderr)
+
+    if result.returncode != 0:
+        raise Exception(f"Fehler beim Aktualisieren des Archivs:\n{result.stderr}")
+    
+    return True
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 3:
+        print("Usage: python b2y.py <pfad_zur_by2_datei> <pfad_zur_by_content.xml>")
+        sys.exit(1)
+    
+    archive_path = sys.argv[1]
+    by_content_path = sys.argv[2]
+    
+    try:
+        update_by2_archive(archive_path, by_content_path)
+        print("Archiv erfolgreich aktualisiert.")
+    except Exception as e:
+        print(f"Fehler: {e}")
+        sys.exit(1)
+
+
+################################################################################
+# Datei: file_util.py
+################################################################################
+
+# Datei: file_util.py
+
+import os
+import datetime
+import configparser
+
+def create_output_folder(base_name):
+    """
+    Erstellt einen Ausgabeverzeichnis basierend auf einer Einstellung in der settings.ini.
+
+    Liest in der INI-Datei (im selben Verzeichnis wie das Skript) den Wert
+    unter [Settings] -> output_data ein.
+
+    - Ist output_data auf einen "true"-Wert gesetzt (z.B. "true", "1", "yes", "on"),
+      wird ein Ordner im Format "jjmmtt" bzw. "jjmmtt_01", "jjmmtt_02", ... erstellt.
+    - Ist output_data auf einen "false"-Wert gesetzt (z.B. "false", "0", "no", "off"),
+      wird der Ordnername aus dem Parameter base_name (also dem Namen der .txt-Datei)
+      übernommen. Existiert dieser Ordner bereits, wird eine Zählervariante (z.B. base_name_01)
+      erzeugt.
+
+    Rückgabe:
+      Pfad zum erstellten Ordner.
+    """
+    # INI-Datei einlesen
+    config = configparser.ConfigParser()
+    config.read("settings.ini")
+    
+    # Default: Datum-Ordner, falls keine Einstellung vorhanden ist
+    output_data = True  
+    if "Settings" in config and "output_data" in config["Settings"]:
+        val = config["Settings"]["output_data"].strip().lower()
+        output_data = val in ["true", "1", "yes", "on"]
+    
+    # Bestimme das Basisverzeichnis
+    if output_data:
+        # Datum-basiertes Format: jjmmtt
+        folder_base = datetime.datetime.now().strftime("%y%m%d")
+    else:
+        # Name der .txt-Datei verwenden (ohne Erweiterung, da base_name üblicherweise so übergeben wird)
+        folder_base = base_name
+    
+    folder_name = folder_base
+    if os.path.exists(folder_name):
+        for i in range(1, 100):
+            folder_candidate = f"{folder_base}_{i:02d}"
+            if not os.path.exists(folder_candidate):
+                folder_name = folder_candidate
+                break
+    os.makedirs(folder_name, exist_ok=True)
+    return folder_name
+
+
+################################################################################
+# Datei: parser.py
+################################################################################
+
+import re
+
+def parse_txt_file(filepath):
+    """
+    Liest die Textdatei ein und extrahiert Karteikarten.
+    
+    Erkannt werden:
+      - "Karteikarte ..." als Beginn eines neuen Blocks.
+      - "Frage:" leitet den Fragetext ein.
+      - "Antwortmöglichkeiten:" leitet den Antwortenbereich ein.
+      - Antworten beginnen mit einem Großbuchstaben und ")" und enthalten entweder "Korrekt:" oder "Falsch:".
+      - "Hinweis:" leitet den Hinweistext ein.
+      - "Formel:" in Frage, Antwort oder Hinweis wird als Formel erkannt.
+      
+    Im Hinweisbereich werden leere Zeilen nicht übersprungen, um Absatz-Trennungen zu ermöglichen.
+    """
+    cards = []
+    current_card = None
+    state = None  # Mögliche Zustände: None, 'question', 'answers', 'hint'
+    question_lines = []
+    answer_list = []  # Liste von Antwort-Dictionaries: {"is_correct": ..., "text": ..., "formulas": []}
+    hint_lines = []
+    question_formulas = []  # Liste von Formeln im Fragetext
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        for raw_line in f:
+            # Entferne nur den Zeilenumbruch, aber nicht alle Leerzeichen (damit im Hint leere Zeilen erhalten bleiben)
+            line = raw_line.rstrip("\n")
+            # Für alle Zustände außer "hint" überspringen wir komplett leere Zeilen:
+            if state != 'hint' and line.strip() == "":
+                continue
+
+            if line.startswith("Karteikarte"):
+                if current_card is not None:
+                    current_card['question'] = "\n".join(question_lines).strip()
+                    current_card['question_formulas'] = question_formulas[:]
+                    current_card['answers'] = answer_list[:]
+                    # Im Hinweis werden die Zeilen per "\n" zusammengefügt (so bleiben Absätze erhalten)
+                    current_card['hint'] = "\n".join(hint_lines).rstrip()
+                    cards.append(current_card)
+                current_card = {}
+                m = re.match(r"Karteikarte\s+(\d+):\s*(.*)", line)
+                if m:
+                    current_card['id'] = m.group(1)
+                    current_card['title'] = m.group(2)
+                else:
+                    current_card['id'] = ""
+                    current_card['title'] = ""
+                state = None
+                question_lines = []
+                answer_list = []
+                hint_lines = []
+                question_formulas = []
+                continue
+
+            if line.startswith("Frage:"):
+                state = 'question'
+                q = line[len("Frage:"):].strip()
+                if q:
+                    question_lines.append(q)
+                continue
+
+            if line.startswith("Antwortmöglichkeiten:"):
+                state = 'answers'
+                continue
+
+            if line.startswith("Hinweis:"):
+                state = 'hint'
+                h = line[len("Hinweis:"):].strip()
+                if h:
+                    hint_lines.append(h)
+                continue
+
+            # Verarbeitung je nach Zustand:
+            if state == 'question':
+                if line.startswith("Formel:"):
+                    formula_text = line[len("Formel:"):].strip()
+                    question_formulas.append(formula_text)
+                else:
+                    question_lines.append(line.strip())
+            elif state == 'answers':
+                if line.startswith("Formel:"):
+                    if answer_list:
+                        formula_text = line[len("Formel:"):].strip()
+                        if "formulas" not in answer_list[-1]:
+                            answer_list[-1]["formulas"] = []
+                        answer_list[-1]["formulas"].append(formula_text)
+                else:
+                    m = re.match(r"([A-Z])\)\s*(Korrekt:|Falsch:)\s*(.*)", line)
+                    if m:
+                        is_correct = "true" if "Korrekt" in m.group(2) else "false"
+                        answer_text = m.group(3).strip()
+                        answer_list.append({
+                            "is_correct": is_correct,
+                            "text": answer_text,
+                            "formulas": []
+                        })
+            elif state == 'hint':
+                # Im Hint-Zustand speichern wir auch leere Zeilen, um Absätze zu trennen
+                hint_lines.append(line)
+    
+    if current_card is not None:
+        current_card['question'] = "\n".join(question_lines).strip()
+        current_card['question_formulas'] = question_formulas[:]
+        current_card['answers'] = answer_list[:]
+        current_card['hint'] = "\n".join(hint_lines).rstrip()
+        cards.append(current_card)
+    
+    return cards
+
+
+################################################################################
+# Datei: settings.ini
+################################################################################
+
+#valueOn = ["true", "1", "yes", "on"]:
+#valueOff = ["false", "0", "no", "off"]:
+[Settings]
+output_data = false
+
+
+################################################################################
+# Datei: txt2xml.py
+################################################################################
+
+import sys
+import os
+
+def find_txt2xml_folder():
+    """
+    Sucht im aktuellen Verzeichnis und in dessen übergeordneten Verzeichnissen
+    nach einem Ordner namens "txt2xml" und gibt dessen absoluten Pfad zurück.
+    """
+    current_dir = os.path.abspath(os.getcwd())
+    while True:
+        candidate = os.path.join(current_dir, "txt2xml")
+        if os.path.isdir(candidate):
+            return candidate
+        parent = os.path.dirname(current_dir)
+        if parent == current_dir:
+            break
+        current_dir = parent
+    return None
+
+txt2xml_folder = find_txt2xml_folder()
+if txt2xml_folder:
+    sys.path.insert(0, txt2xml_folder)
+    print(f"Ordner 'txt2xml' gefunden: {txt2xml_folder}")
+else:
+    print("Ordner 'txt2xml' wurde nicht gefunden. Bitte stelle sicher, dass die Module vorhanden sind.")
+
+import glob
+import shutil
+import xml.etree.ElementTree as ET
+
+from parser import parse_txt_file
+from xml_builder import build_xml
+from file_util import create_output_folder
+# Den bisherigen Archivierungs-Import entfernen, da wir nun b2y.py nutzen
+# from archiver import archive_by_content
+
+def process_txt_files():
+    txt_files = glob.glob("*.txt")
+    if not txt_files:
+        print("Keine .txt-Dateien gefunden!")
+        return
+
+    for txt_file in txt_files:
+        print(f"Verarbeite {txt_file} ...")
+        cards = parse_txt_file(txt_file)
+        base_name = os.path.splitext(txt_file)[0]
+        
+        # Erzeuge die Haupt-XML-Datei (userLessonID "123456")
+        xml_root = build_xml(cards, lesson_title=base_name, user_lesson_id="123456")
+        ET.indent(xml_root, space="  ", level=0)
+        
+        output_folder = create_output_folder(base_name)
+        output_xml = os.path.join(output_folder, base_name + ".xml")
+        tree = ET.ElementTree(xml_root)
+        tree.write(output_xml, encoding="utf-8", xml_declaration=False)
+        
+        shutil.move(txt_file, os.path.join(output_folder, txt_file))
+        
+        # Erzeuge die Archiv-Version (userLessonID "669686010")
+        archive_user_id = "669686010"
+        xml_archive_root = build_xml(cards, lesson_title=base_name, user_lesson_id=archive_user_id)
+        ET.indent(xml_archive_root, space="  ", level=0)
+        archive_xml_path = os.path.join(output_folder, "by_content.xml")
+        tree_archive = ET.ElementTree(xml_archive_root)
+        tree_archive.write(archive_xml_path, encoding="utf-8", xml_declaration=True)
+        
+        # Aktualisiere das vorhandene Archiv mittels b2y.py.
+        from b2y import update_by2_archive
+
+        # Hier wird der Archivname explizit angegeben:
+        archive_path = os.path.join(output_folder, "lesson_669974947_import-lektion00.by2")
+        by_content_path = os.path.join(output_folder, "by_content.xml")
+        
+        try:
+            update_by2_archive(archive_path, by_content_path)
+            print(f"Archiv '{os.path.basename(archive_path)}' wurde aktualisiert.")
+        except Exception as e:
+            print(f"Fehler beim Aktualisieren des Archivs: {e}")
+
+        print(f"Erstellt: Ordner '{output_folder}' mit '{base_name}.xml' und 'by_content.xml'.")
+
+def main():
+    # Optional: Einen Eingabeordner als Kommandozeilenargument übergeben
+    if len(sys.argv) > 1:
+        input_dir = sys.argv[1]
+        if os.path.isdir(input_dir):
+            os.chdir(input_dir)
+            print(f"Arbeitsverzeichnis geändert zu: {os.getcwd()}")
+        else:
+            print(f"Der angegebene Pfad '{input_dir}' ist kein gültiges Verzeichnis.")
+            sys.exit(1)
+    process_txt_files()
+
+if __name__ == "__main__":
+    main()
+
+
+################################################################################
+# Datei: xml_builder.py
+################################################################################
+
+import xml.etree.ElementTree as ET
+import random
+
+def generate_user_card_id():
+    """
+    Generiert eine zufällige 9-stellige Zahl als String.
+    """
+    return str(random.randint(600000000, 699999999))
+
+def build_hint_block(hint_text):
+    """
+    Erzeugt XML-Elemente für den Hinweisbereich.
+    
+    - Teilt den gesamten Hinweistext in Absätze, getrennt durch mindestens eine leere Zeile.
+    - Der erste Absatz wird als Beschreibung in einem <para> ausgegeben.
+    - Weitere Absätze werden in eine <ul> mit <li>-Elementen verpackt.
+    - In jedem Absatz werden Zeilen, die mit "Formel:" beginnen, als <formula> in einem <font size="18"> ausgegeben.
+    """
+    hint_text = hint_text.strip()
+    if not hint_text:
+        return []
+    # Absätze: geteilte Blöcke durch mindestens doppelte Zeilenumbrüche
+    paragraphs = hint_text.split("\n\n")
+    elements = []
+    # Ersten Absatz als beschreibenden Text ausgeben:
+    desc_para = ET.Element("para")
+    desc_font = ET.SubElement(desc_para, "font", {"size": "18"})
+    desc_font.text = paragraphs[0].replace("\n", " ")  # innerer Zeilenumbruch als Leerzeichen
+    # Optional: Ein <br/> hinzufügen
+    desc_para.append(ET.Element("br"))
+    elements.append(desc_para)
+    
+    # Weitere Absätze in eine Liste packen:
+    if len(paragraphs) > 1:
+        ul_elem = ET.Element("ul")
+        for p in paragraphs[1:]:
+            p = p.strip()
+            if not p:
+                continue
+            li_elem = ET.Element("li")
+            # Jede Zeile im Absatz
+            for line in p.split("\n"):
+                line = line.strip()
+                if not line:
+                    continue
+                if line.startswith("Formel:"):
+                    # Entferne den Marker "Formel:" und erstelle ein <formula>-Element
+                    formula_text = line[len("Formel:"):].strip()
+                    font_elem = ET.Element("font", {"size": "18"})
+                    formula_elem = ET.SubElement(font_elem, "formula")
+                    formula_elem.text = formula_text
+                    li_elem.append(font_elem)
+                    li_elem.append(ET.Element("br"))
+                else:
+                    font_elem = ET.Element("font", {"size": "18"})
+                    font_elem.text = line
+                    li_elem.append(font_elem)
+                    li_elem.append(ET.Element("br"))
+            ul_elem.append(li_elem)
+        elements.append(ul_elem)
+    return elements
+
+def build_xml(cards, lesson_title, user_lesson_id="123456"):
+    """
+    Erzeugt einen XML-Baum mit folgender Struktur:
+    
+    <BYXML ...>
+      <lesson title="lesson_title" userLessonID="user_lesson_id">
+        <multiplechoicefilecard userCardID="...">
+          <question>
+            <para>
+              <font size="18">Fragetext</font>
+              <!-- Für jede in der Frage definierte Formel: -->
+              <formula>...</formula>
+            </para>
+          </question>
+          <mcAnswers>
+            <mcAnswer correct="true/false">
+              <answer>
+                <para>
+                  <font size="18">Antworttext</font>
+                  <!-- Für jede in der Antwort definierte Formel: -->
+                  <formula>...</formula>
+                </para>
+              </answer>
+            </mcAnswer>
+            ...
+          </mcAnswers>
+          <crib>
+            <!-- Hinweisbereich wird in beschreibenden Teil und Liste aufgeteilt -->
+          </crib>
+        </multiplechoicefilecard>
+        ...
+      </lesson>
+    </BYXML>
+    """
+    root = ET.Element("BYXML", {
+        "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "version": "1.0",
+        "xsi:noNamespaceSchemaLocation": "https://brainyoo.iu.org/Brainyoo2/xsd/brainyoo_xml_v2.0.xsd"
+    })
+    lesson = ET.SubElement(root, "lesson", {
+        "title": lesson_title,
+        "userLessonID": user_lesson_id
+    })
+    
+    for card in cards:
+        userCardID = generate_user_card_id()
+        mcard = ET.SubElement(lesson, "multiplechoicefilecard", {"userCardID": userCardID})
+        
+        # Frage-Block:
+        question_elem = ET.SubElement(mcard, "question")
+        para_elem = ET.SubElement(question_elem, "para")
+        font_elem = ET.SubElement(para_elem, "font", {"size": "18"})
+        font_elem.text = card.get("question", "")
+        # Hänge alle im Fragetext definierten Formeln an:
+        for formula in card.get("question_formulas", []):
+            formula_elem = ET.SubElement(para_elem, "formula")
+            formula_elem.text = formula
+        
+        # Antworten-Block:
+        mcAnswers_elem = ET.SubElement(mcard, "mcAnswers")
+        for answer in card.get("answers", []):
+            mcAnswer_elem = ET.SubElement(mcAnswers_elem, "mcAnswer", {"correct": answer.get("is_correct", "false")})
+            answer_elem = ET.SubElement(mcAnswer_elem, "answer")
+            para_ans = ET.SubElement(answer_elem, "para")
+            font_ans = ET.SubElement(para_ans, "font", {"size": "18"})
+            font_ans.text = answer.get("text", "")
+            for formula in answer.get("formulas", []):
+                formula_elem = ET.SubElement(para_ans, "formula")
+                formula_elem.text = formula
+        
+        # Hinweis-Block (crib):
+        if card.get("hint", ""):
+            crib_elem = ET.SubElement(mcard, "crib")
+            hint_nodes = build_hint_block(card.get("hint", ""))
+            for node in hint_nodes:
+                crib_elem.append(node)
+        
+    return root
+
+

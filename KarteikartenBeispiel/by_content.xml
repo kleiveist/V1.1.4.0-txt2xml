@@ -1,0 +1,650 @@
+<?xml version='1.0' encoding='utf-8'?>
+<BYXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:noNamespaceSchemaLocation="https://brainyoo.iu.org/Brainyoo2/xsd/brainyoo_xml_v2.0.xsd">
+  <lesson title="L3" userLessonID="669686010">
+    <multiplechoicefilecard userCardID="607532318">
+      <question>
+        <para>
+          <font size="18">Welche Aussage beschreibt NICHT das Ziel des Entity-Relationship-Modells im Rahmen der Datenbankmodellierung?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Das ER-Modell unterstützt die strukturierte Modellierung von Datenstrukturen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Das ER-Modell hilft, Entitäten und deren Beziehungen im System zu erfassen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Das ER-Modell bildet die Grundlage für die Erstellung relationaler Schemata.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Das ER-Modell dient primär der Entwicklung effizienter Algorithmen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Das ER-Modell legt den Fokus auf die Abbildung und Strukturierung von Daten sowie deren Beziehungen, nicht auf die Entwicklung von Algorithmen.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="649662742">
+      <question>
+        <para>
+          <font size="18">In welchem Aspekt unterscheiden sich ER-Diagramme maßgeblich von UML-Klassendiagrammen?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">ER-Diagramme modellieren primär Datenstrukturen, UML-Klassendiagramme hingegen Systemverhalten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Beide Diagrammtypen verfolgen identische Modellierungsziele.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">UML-Klassendiagramme sind auf relationale Datenbanksysteme beschränkt.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">ER-Diagramme erfassen keine Beziehungen zwischen Entitäten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">ER-Diagramme sind speziell für die Datenmodellierung ausgelegt, während UML-Klassendiagramme insbesondere für objektorientierte Analysen und das Systemverhalten genutzt werden.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="601509887">
+      <question>
+        <para>
+          <font size="18">Welche der folgenden Aussagen über Normalformen ist FALSCH?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Normalformen werden zur Optimierung der Datenstruktur eingesetzt.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Jede Normalform schließt automatisch alle vorherigen mit ein.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Normalformen dienen der Vermeidung von Redundanzen und Anomalien.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Die 1. Normalform garantiert bereits die vollständige Redundanzfreiheit.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Die 1. Normalform stellt lediglich sicher, dass jedes Attribut nur einen atomaren Wert enthält; vollständige Redundanzfreiheit wird erst mit höheren Normalformen erreicht.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="625928534">
+      <question>
+        <para>
+          <font size="18">Was ist KEIN Merkmal des iterativen Modellierungsprozesses beim Entwurf einer Datenbank?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Einmalige Definition aller Datenstrukturen zu Beginn.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Mehrfache Überarbeitung und Verfeinerung des Modells.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Schrittweise Entwicklung vom fachlichen zum technischen Modell.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Anpassung an neue fachliche Anforderungen während der Entwicklung.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Ein iterativer Prozess ist durch ständiges Anpassen und Optimieren gekennzeichnet, nicht durch eine einmalige Festlegung.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="665097315">
+      <question>
+        <para>
+          <font size="18">Welche Aussage bezüglich Kardinalitäten in einem ER-Modell ist korrekt?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten definieren die zulässigen Mengenbeziehungen zwischen Entitäten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten beschreiben ausschließlich Attributtypen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten bestimmen die Reihenfolge der Datensätze in einer Tabelle.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten werden nur bei UML-Klassendiagrammen verwendet.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Kardinalitäten legen fest, wie viele Entitäten aus einer Entitätsmenge einer anderen zugeordnet sein können (z. B. 1:1, 1:n, m:n).</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="633245310">
+      <question>
+        <para>
+          <font size="18">Was ist NICHT Ziel des physischen Datenmodells in der Datenbankentwicklung?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Definition konkreter Speicherstrukturen und Zugriffswege.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Optimierung für performante Datenverarbeitung.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Festlegung logischer Beziehungen zwischen Entitäten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Umsetzung des relationalen Modells auf ein DBMS.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Die logischen Beziehungen werden im logischen Modell abgebildet, das physische Modell fokussiert auf technische Umsetzung und Speicherung.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="646976567">
+      <question>
+        <para>
+          <font size="18">Welche Aussage beschreibt NICHT korrekt, was im ER-Modell als Entität betrachtet wird?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Eine Entität steht für ein klar abgrenzbares Objekt im zu modellierenden System.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Entitäten können sowohl konkrete als auch abstrakte Objekte repräsentieren.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Ein einzelner Attributwert wie eine Telefonnummer gilt als Entität.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Entitäten werden durch Attribute näher beschrieben.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Ein Attributwert ist lediglich eine Eigenschaft einer Entität, nicht selbst eine Entität.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="638333791">
+      <question>
+        <para>
+          <font size="18">Welche Eigenschaft muss ein Primärschlüssel in einem relationalen Datenbankschema gemäß ER-Modell zwingend erfüllen?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Jeder Wert muss eindeutig sein.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Jeder Wert darf mehrfach auftreten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Der Primärschlüssel kann NULL-Werte enthalten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Der Primärschlüssel wird nach dem Zufallsprinzip generiert.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Die Eindeutigkeit des Primärschlüssels ist mathematisch zu beschreiben durch \( \forall x, y: x \neq y \implies PK(x) \neq PK(y) \).</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="650013719">
+      <question>
+        <para>
+          <font size="18">Welche Aussage beschreibt korrekt das Modellelement "Entität" im Entity-Relationship-Modell?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Eine Entität repräsentiert ein Objekt oder einen Gegenstand, der für die Modellierung relevant ist.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Eine Entität beschreibt ausschließlich die Beziehung zwischen zwei Attributen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Eine Entität dient nur zur Identifikation von Attributwerten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Eine Entität ist ein optionales Zusatzmerkmal im Datenbankschema.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Im ER-Modell steht die Entität für ein eindeutig identifizierbares Objekt, etwa "Kunde", "Produkt" oder "Artikel".</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="673942049">
+      <question>
+        <para>
+          <font size="18">Welche Funktion erfüllen Schlüssel als Modellelement im Entity-Relationship-Modell?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Schlüssel dienen ausschließlich der Beschreibung von Beziehungen zwischen Entitäten.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Schlüssel gewährleisten die eindeutige Identifikation jeder Entität innerhalb einer Entitätsmenge.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Schlüssel definieren ausschließlich optionale Attribute einer Entität.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Schlüssel werden zur Gruppierung mehrerer Beziehungen genutzt.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Schlüssel (z. B. Primärschlüssel) sorgen dafür, dass jeder Datensatz eindeutig unterscheidbar bleibt.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="692838894">
+      <question>
+        <para>
+          <font size="18">Was beschreibt das Modellelement "Beziehung" im Kontext des ER-Modells?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Eine Beziehung stellt die Verknüpfung oder Assoziation zwischen zwei oder mehr Entitäten dar.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Eine Beziehung dient der eindeutigen Identifikation einer Entität.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Eine Beziehung beschreibt ausschließlich die Werte einzelner Attribute.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Eine Beziehung ist ein Attributtyp für spezielle Datentypen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Beziehungen modellieren logische Zusammenhänge zwischen Entitäten, zum Beispiel "Kunde kauft Produkt".</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="646739467">
+      <question>
+        <para>
+          <font size="18">Welche der folgenden Notationen wird NICHT zur grafischen Darstellung von Entity-Relationship-Modellen verwendet?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Martin-Notation</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Chen-Notation</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">UML-Klassendiagramm</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Entity-Funktionsdiagramm</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Im Kontext des ER-Modells sind Martin-Notation, Chen-Notation und UML-Klassendiagramme gängige Darstellungsformen, während Entity-Funktionsdiagramme nicht zur grafischen Notation von ER-Modellen gehören.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="665995232">
+      <question>
+        <para>
+          <font size="18">Was ist die Hauptfunktion von Kardinalitäten in Bezug auf Beziehungen im Entity-Relationship-Modell?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten legen fest, wie viele Entitäten an einer Beziehung jeweils beteiligt sein können.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten bestimmen die Reihenfolge der Attribute in einer Entität.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten dienen ausschließlich der Attributbeschreibung.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Kardinalitäten werden ausschließlich zur Namensgebung von Beziehungen verwendet.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Die Kardinalität definiert z. B., ob einer Entität eine oder mehrere Entitäten der anderen Seite zugeordnet werden können (z. B. 1:N).</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="633266755">
+      <question>
+        <para>
+          <font size="18">Wie beeinflusst der Beziehungstyp (z. B. 1:N oder N:M) die Umsetzung einer Beziehung im relationalen Datenmodell?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Der Beziehungstyp hat keinen Einfluss auf die tabellarische Umsetzung.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Alle Beziehungstypen werden immer als einzelne Attributspalte umgesetzt.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Die Art der Beziehung bestimmt, ob ein Fremdschlüssel oder eine separate Beziehungstabelle benötigt wird.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Beziehungstypen werden ausschließlich durch die Wahl der Schlüsselnamen bestimmt.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">N:M-Beziehungen erfordern z. B. eine zusätzliche Tabelle zur Abbildung der Beziehung, während bei 1:N oft ein Fremdschlüssel genügt.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+    <multiplechoicefilecard userCardID="606555790">
+      <question>
+        <para>
+          <font size="18">Wie wird im ER-Modell die Möglichkeit abgebildet, dass eine Beziehung zwischen Entitäten bestehen kann, aber nicht bestehen muss?</font>
+        </para>
+      </question>
+      <mcAnswers>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Durch die Verwendung von zusammengesetzten Attributen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Durch eine feste 1:1-Kardinalität ohne weitere Kennzeichnung.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="true">
+          <answer>
+            <para>
+              <font size="18">Durch die Kennzeichnung der Kardinalität als optional, z. B. mit speziellen Symbolen oder Zusätzen.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+        <mcAnswer correct="false">
+          <answer>
+            <para>
+              <font size="18">Durch die Einführung zusätzlicher Entitäten für jede Ausnahme.</font>
+            </para>
+          </answer>
+        </mcAnswer>
+      </mcAnswers>
+      <crib>
+        <para>
+          <font size="18">Die Option, dass eine Beziehung nicht zwingend existieren muss, wird durch optionale Kardinalitäten (z. B. "0..1" oder "C") modelliert.</font>
+          <br />
+        </para>
+      </crib>
+    </multiplechoicefilecard>
+  </lesson>
+</BYXML>

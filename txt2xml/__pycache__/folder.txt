@@ -1,0 +1,7 @@
+txt2xml/
+ ├── __init__.py         # (optional, falls Du ein Paket erstellen möchtest)
+ ├── parser.py           # Funktionen zum Parsen der Textdatei
+ ├── xml_builder.py      # Funktionen zum Erzeugen des XML-Baums
+ ├── file_util.py        # Funktionen zum Erstellen von Ordnern und Dateioperationen
+ ├── archiver.py         # Funktionen zum Archivieren (mit 7‑Zip)
+ └── main.py             # Das Hauptskript, das alles zusammenführt

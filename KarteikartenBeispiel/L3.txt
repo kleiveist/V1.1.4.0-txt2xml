@@ -1,0 +1,134 @@
+Karteikarte 1: Zielsetzung des ER-Modells
+Frage: Welche Aussage beschreibt NICHT das Ziel des Entity-Relationship-Modells im Rahmen der Datenbankmodellierung?
+Antwortmöglichkeiten:
+A) Falsch: Das ER-Modell unterstützt die strukturierte Modellierung von Datenstrukturen.
+B) Falsch: Das ER-Modell hilft, Entitäten und deren Beziehungen im System zu erfassen.
+C) Falsch: Das ER-Modell bildet die Grundlage für die Erstellung relationaler Schemata.
+D) Korrekt: Das ER-Modell dient primär der Entwicklung effizienter Algorithmen.
+Hinweis: Das ER-Modell legt den Fokus auf die Abbildung und Strukturierung von Daten sowie deren Beziehungen, nicht auf die Entwicklung von Algorithmen.
+
+Karteikarte 2: Unterschied ER-Diagramm und UML-Klassendiagramm
+Frage: In welchem Aspekt unterscheiden sich ER-Diagramme maßgeblich von UML-Klassendiagrammen?
+Antwortmöglichkeiten:
+A) Korrekt: ER-Diagramme modellieren primär Datenstrukturen, UML-Klassendiagramme hingegen Systemverhalten.
+B) Falsch: Beide Diagrammtypen verfolgen identische Modellierungsziele.
+C) Falsch: UML-Klassendiagramme sind auf relationale Datenbanksysteme beschränkt.
+D) Falsch: ER-Diagramme erfassen keine Beziehungen zwischen Entitäten.
+Hinweis: ER-Diagramme sind speziell für die Datenmodellierung ausgelegt, während UML-Klassendiagramme insbesondere für objektorientierte Analysen und das Systemverhalten genutzt werden.
+
+Karteikarte 3: Normalformen und Redundanz
+Frage: Welche der folgenden Aussagen über Normalformen ist FALSCH?
+Antwortmöglichkeiten:
+A) Falsch: Normalformen werden zur Optimierung der Datenstruktur eingesetzt.
+B) Falsch: Jede Normalform schließt automatisch alle vorherigen mit ein.
+C) Falsch: Normalformen dienen der Vermeidung von Redundanzen und Anomalien.
+D) Korrekt: Die 1. Normalform garantiert bereits die vollständige Redundanzfreiheit.
+Hinweis: Die 1. Normalform stellt lediglich sicher, dass jedes Attribut nur einen atomaren Wert enthält; vollständige Redundanzfreiheit wird erst mit höheren Normalformen erreicht.
+
+Karteikarte 4: Iterativer Modellierungsprozess
+Frage: Was ist KEIN Merkmal des iterativen Modellierungsprozesses beim Entwurf einer Datenbank?
+Antwortmöglichkeiten:
+A) Korrekt: Einmalige Definition aller Datenstrukturen zu Beginn.
+B) Falsch: Mehrfache Überarbeitung und Verfeinerung des Modells.
+C) Falsch: Schrittweise Entwicklung vom fachlichen zum technischen Modell.
+D) Falsch: Anpassung an neue fachliche Anforderungen während der Entwicklung.
+Hinweis: Ein iterativer Prozess ist durch ständiges Anpassen und Optimieren gekennzeichnet, nicht durch eine einmalige Festlegung.
+
+Karteikarte 5: Kardinalitäten im ER-Modell
+Frage: Welche Aussage bezüglich Kardinalitäten in einem ER-Modell ist korrekt?
+Antwortmöglichkeiten:
+A) Korrekt: Kardinalitäten definieren die zulässigen Mengenbeziehungen zwischen Entitäten.
+B) Falsch: Kardinalitäten beschreiben ausschließlich Attributtypen.
+C) Falsch: Kardinalitäten bestimmen die Reihenfolge der Datensätze in einer Tabelle.
+D) Falsch: Kardinalitäten werden nur bei UML-Klassendiagrammen verwendet.
+Hinweis: Kardinalitäten legen fest, wie viele Entitäten aus einer Entitätsmenge einer anderen zugeordnet sein können (z. B. 1:1, 1:n, m:n).
+
+Karteikarte 6: Zielsetzung des physischen Datenmodells
+Frage: Was ist NICHT Ziel des physischen Datenmodells in der Datenbankentwicklung?
+Antwortmöglichkeiten:
+A) Falsch: Definition konkreter Speicherstrukturen und Zugriffswege.
+B) Falsch: Optimierung für performante Datenverarbeitung.
+C) Korrekt: Festlegung logischer Beziehungen zwischen Entitäten.
+D) Falsch: Umsetzung des relationalen Modells auf ein DBMS.
+Hinweis: Die logischen Beziehungen werden im logischen Modell abgebildet, das physische Modell fokussiert auf technische Umsetzung und Speicherung.
+
+Karteikarte 7: Bedeutung von Entitäten
+Frage: Welche Aussage beschreibt NICHT korrekt, was im ER-Modell als Entität betrachtet wird?
+Antwortmöglichkeiten:
+A) Falsch: Eine Entität steht für ein klar abgrenzbares Objekt im zu modellierenden System.
+B) Falsch: Entitäten können sowohl konkrete als auch abstrakte Objekte repräsentieren.
+C) Korrekt: Ein einzelner Attributwert wie eine Telefonnummer gilt als Entität.
+D) Falsch: Entitäten werden durch Attribute näher beschrieben.
+Hinweis: Ein Attributwert ist lediglich eine Eigenschaft einer Entität, nicht selbst eine Entität.
+
+Karteikarte 8: Primärschlüssel im ER-Modell
+Frage: Welche Eigenschaft muss ein Primärschlüssel in einem relationalen Datenbankschema gemäß ER-Modell zwingend erfüllen?
+Antwortmöglichkeiten:
+A) Korrekt: Jeder Wert muss eindeutig sein.
+B) Falsch: Jeder Wert darf mehrfach auftreten.
+C) Falsch: Der Primärschlüssel kann NULL-Werte enthalten.
+D) Falsch: Der Primärschlüssel wird nach dem Zufallsprinzip generiert.
+Hinweis: Die Eindeutigkeit des Primärschlüssels ist mathematisch zu beschreiben durch \( \forall x, y: x \neq y \implies PK(x) \neq PK(y) \).
+
+Karteikarte 1: Bedeutung von Entitäten im ER-Modell
+Frage: Welche Aussage beschreibt korrekt das Modellelement "Entität" im Entity-Relationship-Modell?
+Antwortmöglichkeiten:
+A) Korrekt: Eine Entität repräsentiert ein Objekt oder einen Gegenstand, der für die Modellierung relevant ist.
+B) Falsch: Eine Entität beschreibt ausschließlich die Beziehung zwischen zwei Attributen.
+C) Falsch: Eine Entität dient nur zur Identifikation von Attributwerten.
+D) Falsch: Eine Entität ist ein optionales Zusatzmerkmal im Datenbankschema.
+Hinweis: Im ER-Modell steht die Entität für ein eindeutig identifizierbares Objekt, etwa "Kunde", "Produkt" oder "Artikel".
+
+Karteikarte 2: Rolle von Schlüsseln
+Frage: Welche Funktion erfüllen Schlüssel als Modellelement im Entity-Relationship-Modell?
+Antwortmöglichkeiten:
+A) Falsch: Schlüssel dienen ausschließlich der Beschreibung von Beziehungen zwischen Entitäten.
+B) Korrekt: Schlüssel gewährleisten die eindeutige Identifikation jeder Entität innerhalb einer Entitätsmenge.
+C) Falsch: Schlüssel definieren ausschließlich optionale Attribute einer Entität.
+D) Falsch: Schlüssel werden zur Gruppierung mehrerer Beziehungen genutzt.
+Hinweis: Schlüssel (z. B. Primärschlüssel) sorgen dafür, dass jeder Datensatz eindeutig unterscheidbar bleibt.
+
+Karteikarte 3: Bedeutung von Beziehungen
+Frage: Was beschreibt das Modellelement "Beziehung" im Kontext des ER-Modells?
+Antwortmöglichkeiten:
+A) Korrekt: Eine Beziehung stellt die Verknüpfung oder Assoziation zwischen zwei oder mehr Entitäten dar.
+B) Falsch: Eine Beziehung dient der eindeutigen Identifikation einer Entität.
+C) Falsch: Eine Beziehung beschreibt ausschließlich die Werte einzelner Attribute.
+D) Falsch: Eine Beziehung ist ein Attributtyp für spezielle Datentypen.
+Hinweis: Beziehungen modellieren logische Zusammenhänge zwischen Entitäten, zum Beispiel "Kunde kauft Produkt".
+
+Karteikarte 4: Grafische Notation im ER-Modell
+Frage: Welche der folgenden Notationen wird NICHT zur grafischen Darstellung von Entity-Relationship-Modellen verwendet?
+Antwortmöglichkeiten:
+A) Falsch: Martin-Notation
+B) Falsch: Chen-Notation
+C) Falsch: UML-Klassendiagramm
+D) Korrekt: Entity-Funktionsdiagramm
+Hinweis: Im Kontext des ER-Modells sind Martin-Notation, Chen-Notation und UML-Klassendiagramme gängige Darstellungsformen, während Entity-Funktionsdiagramme nicht zur grafischen Notation von ER-Modellen gehören.
+
+Karteikarte 5: Bedeutung von Kardinalitäten bei Beziehungen
+Frage: Was ist die Hauptfunktion von Kardinalitäten in Bezug auf Beziehungen im Entity-Relationship-Modell?
+Antwortmöglichkeiten:
+A) Korrekt: Kardinalitäten legen fest, wie viele Entitäten an einer Beziehung jeweils beteiligt sein können.
+B) Falsch: Kardinalitäten bestimmen die Reihenfolge der Attribute in einer Entität.
+C) Falsch: Kardinalitäten dienen ausschließlich der Attributbeschreibung.
+D) Falsch: Kardinalitäten werden ausschließlich zur Namensgebung von Beziehungen verwendet.
+Hinweis: Die Kardinalität definiert z. B., ob einer Entität eine oder mehrere Entitäten der anderen Seite zugeordnet werden können (z. B. 1:N).
+
+Karteikarte 6: Zusammenhang zwischen Beziehungstyp und Implementierung
+Frage: Wie beeinflusst der Beziehungstyp (z. B. 1:N oder N:M) die Umsetzung einer Beziehung im relationalen Datenmodell?
+Antwortmöglichkeiten:
+A) Falsch: Der Beziehungstyp hat keinen Einfluss auf die tabellarische Umsetzung.
+B) Falsch: Alle Beziehungstypen werden immer als einzelne Attributspalte umgesetzt.
+C) Korrekt: Die Art der Beziehung bestimmt, ob ein Fremdschlüssel oder eine separate Beziehungstabelle benötigt wird.
+D) Falsch: Beziehungstypen werden ausschließlich durch die Wahl der Schlüsselnamen bestimmt.
+Hinweis: N:M-Beziehungen erfordern z. B. eine zusätzliche Tabelle zur Abbildung der Beziehung, während bei 1:N oft ein Fremdschlüssel genügt.
+
+Karteikarte 7: Optionalität und Kardinalität
+Frage: Wie wird im ER-Modell die Möglichkeit abgebildet, dass eine Beziehung zwischen Entitäten bestehen kann, aber nicht bestehen muss?
+Antwortmöglichkeiten:
+A) Falsch: Durch die Verwendung von zusammengesetzten Attributen.
+B) Falsch: Durch eine feste 1:1-Kardinalität ohne weitere Kennzeichnung.
+C) Korrekt: Durch die Kennzeichnung der Kardinalität als optional, z. B. mit speziellen Symbolen oder Zusätzen.
+D) Falsch: Durch die Einführung zusätzlicher Entitäten für jede Ausnahme.
+Hinweis: Die Option, dass eine Beziehung nicht zwingend existieren muss, wird durch optionale Kardinalitäten (z. B. "0..1" oder "C") modelliert.
